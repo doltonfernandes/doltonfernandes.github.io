@@ -1,7 +1,155 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
-<body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
-</body>
+	<head>
+		<title>Home-Page</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="icon" href="images/favicon.ico" type="image/gif" sizes="16x16">
+	</head>
+	<script>
+		var i = 0 , j = 0;
+		var txt1 = 'Hi! Im Dolton Fernandes';
+		var txt2 = 'Welcome To My Personal Website';
+		function typeWriter() {
+			if (i < txt1.length) {
+				document.getElementById("heading1").innerHTML += txt1.charAt(i);
+				i++;
+				setTimeout(typeWriter, 100);
+			}
+			else
+			{
+				if (j < txt2.length) {
+					document.getElementById("heading2").innerHTML += txt2.charAt(j);
+					j++;
+					setTimeout(typeWriter, 100);
+				}
+			}
+		}
+		function mail() {
+			console.log(document.getElementById('name').value);
+			console.log(document.getElementById('email').value);
+			console.log(document.getElementById('message').value);
+			alert("Mail Sent");
+			return false
+		}
+	</script>
+	<body onload="typeWriter()">
+
+			<header id="header">
+				<div class="logo"><a href="index.html">HomePage</a></div>
+				<a href="#menu"><span>Menu</span></a>
+			</header>
+
+			<nav id="menu">
+				<ul class="links">
+					<li><a href="#banner">Intro</a></li>
+					<li><a href="#one">About Me</a></li>
+					<li><a href="#two">Coming Soon</a></li>
+					<li><a href="#three">About My College</a></li>
+				</ul>
+			</nav>
+
+			<section id="banner" class="bg-img" data-bg="1.jpg">
+				<div class="inner">
+					<header>
+						<h1 id="heading1"></h1>
+						<h2 id="heading2" style="font-family: Times;"></h2>
+					</header>
+				</div>
+				<a href="#one" class="more">Learn More</a>
+			</section>
+
+			<section id="one" class="wrapper post bg-img" data-bg="2.jpg">
+				<div class="inner">
+					<article class="box">
+						<header>
+							<h2>About Me</h2>
+						</header>
+						<div class="content">
+							<p>Currently pursuing CSD ( BTech in Computer Science and Engineering & MS in Computer Science ) Degree at International Institue of Information Technology, Hyderabad ( IIIT-H )</p>
+							<p>Hometown in Kumta, Karnataka ❤️</p>
+							<p>Born and brought up in Goa</p>
+						</div>
+					</article>
+				</div>
+				<a href="#two" class="more"></a>
+			</section>
+
+			<section id="two" class="wrapper post bg-img" data-bg="3.jpg">
+				<div class="inner">
+					<article class="box">
+						<header>
+							<h2>Coming Soon</h2>
+						</header>
+						<div class="content">
+							<p>...</p>
+						</div>
+					</article>
+				</div>
+				<a href="#three" class="more">Learn More</a>
+			</section>
+
+			<section id="three" class="wrapper post bg-img" data-bg="4.jpg">
+				<div class="inner">
+					<article class="box">
+						<header>
+							<h2>About My College</h2>
+						</header>
+						<div class="content">
+							<p>
+								International Institute of Information Technology, Hyderabad (IIITH) is an autonomous university, founded as a not-for-profit public private partnership (N-PPP) in 1998, and is the first IIIT in India under this model. Over the years, the institute has evolved strong research programmes in various areas, with an emphasis on technology and applied research for industry and society.
+							</p>
+						</div>
+					</article>
+				</div>
+				<a href="#footer" class="more">Learn More</a>
+			</section>
+
+			<footer id="footer">
+				<div class="inner">
+
+					<h2>Contact Me</h2>
+
+					<form onsubmit="return mail()">
+
+						<div class="field half first">
+							<label for="name">Name</label>
+							<input name="name" id="name" type="text" placeholder="Name">
+						</div>
+						<div class="field half">
+							<label for="email">Email</label>
+							<input name="email" id="email" type="email" placeholder="Email">
+						</div>
+						<div class="field">
+							<label for="message">Message</label>
+							<textarea name="message" id="message" rows="6" placeholder="Message"></textarea>
+						</div>
+						<ul class="actions">
+							<li><input value="Send Message" class="button alt" type="submit"></li>
+						</ul>
+					</form>
+
+					<ul class="icons">
+						<li><a href="https://github.com/doltonfernandes" class="icon round fa-github"><span class="label">Github</span></a></li>
+						<li><a href="https://www.facebook.com/dolton.fernandes" class="icon round fa-facebook"><span class="label">Facebook</span></a></li>
+						<li><a href="https://www.instagram.com/doltferns/" class="icon round fa-instagram"><span class="label">Instagram</span></a></li>
+						<li><a href="https://www.youtube.com/channel/UCPS0JsYI1edGbqwAPM7XpNw" class="icon round fa-youtube"><span class="label">Youtube</span></a></li>
+					</ul>
+
+					<div class="copyright">
+						 <font color="black" style="font-size: 18px;">Made By Dolton Fernandes</font> 
+					</div>
+
+				</div>
+			</footer>
+
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
 </html>
