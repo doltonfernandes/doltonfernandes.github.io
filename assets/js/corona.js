@@ -26,7 +26,7 @@ function make_table() {
 function sort_country() {
 	obj.sort(function(a, b) {
 		return (a["country"] > b["country"])^country;
-	})
+	});
 	document.getElementById('country').textContent = 'COUNTRY' + (country ? '↓':'↑');
 	country = !country;
 	make_table();
@@ -36,7 +36,7 @@ function sort_country() {
 function sort_new() {
 	obj.sort(function(a, b) {
 		return (a["cases"]["new"] > b["cases"]["new"])^neww;
-	})
+	});
 	document.getElementById('new').textContent = 'NEW' + (neww ? '↓':'↑');
 	neww = !neww;
 	make_table();
@@ -45,7 +45,7 @@ function sort_new() {
 function sort_active() {
 	obj.sort(function(a, b) {
 		return (a["cases"]["active"] > b["cases"]["active"])^active;
-	})
+	});
 	document.getElementById('active').textContent = 'ACTIVE' + (active ? '↓':'↑');
 	active = !active;
 	make_table();
@@ -54,7 +54,7 @@ function sort_active() {
 function sort_critical() {
 	obj.sort(function(a, b) {
 		return (a["cases"]["critical"] > b["cases"]["critical"])^critical;
-	})
+	});
 	document.getElementById('critical').textContent = 'CRITICAL' + (critical ? '↓':'↑');
 	critical = !critical;
 	make_table();
@@ -63,7 +63,7 @@ function sort_critical() {
 function sort_recovered() {
 	obj.sort(function(a, b) {
 		return (a["cases"]["recovered"] > b["cases"]["recovered"])^recovered;
-	})
+	});
 	document.getElementById('recovered').textContent = 'RECOVERED' + (recovered ? '↓':'↑');
 	recovered = !recovered;
 	make_table();
@@ -72,7 +72,7 @@ function sort_recovered() {
 function sort_total() {
 	obj.sort(function(a, b) {
 		return (a["cases"]["total"] > b["cases"]["total"])^total;
-	})
+	});
 	document.getElementById('total').textContent = 'TOTAL' + (total ? '↓':'↑');
 	total = !total;
 	make_table();
