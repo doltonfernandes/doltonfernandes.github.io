@@ -24,7 +24,7 @@ function make_table() {
 
 function sort_country() {
 	obj.sort(function(a, b) {
-		return (a["country"] > b["country"])^country;
+		return 2*((a["country"] > b["country"])^country)-1;
 	});
 	document.getElementById('country').textContent = 'COUNTRY' + (country ? '↓':'↑');
 	country = !country;
@@ -34,7 +34,7 @@ function sort_country() {
 
 function sort_new() {
 	obj.sort(function(a, b) {
-		return (a["cases"]["new"] > b["cases"]["new"])^neww;
+		return 2*((a["cases"]["new"] > b["cases"]["new"])^neww)-1;
 	});
 	document.getElementById('new').textContent = 'NEW' + (neww ? '↓':'↑');
 	neww = !neww;
@@ -43,7 +43,7 @@ function sort_new() {
 
 function sort_active() {
 	obj.sort(function(a, b) {
-		return (a["cases"]["active"] > b["cases"]["active"])^active;
+		return 2*((a["cases"]["active"] > b["cases"]["active"])^active)-1;
 	});
 	document.getElementById('active').textContent = 'ACTIVE' + (active ? '↓':'↑');
 	active = !active;
@@ -52,7 +52,7 @@ function sort_active() {
 
 function sort_critical() {
 	obj.sort(function(a, b) {
-		return (a["cases"]["critical"] > b["cases"]["critical"])^critical;
+		return 2*((a["cases"]["critical"] > b["cases"]["critical"])^critical)-1;
 	});
 	document.getElementById('critical').textContent = 'CRITICAL' + (critical ? '↓':'↑');
 	critical = !critical;
@@ -61,7 +61,7 @@ function sort_critical() {
 
 function sort_recovered() {
 	obj.sort(function(a, b) {
-		return (a["cases"]["recovered"] > b["cases"]["recovered"])^recovered;
+		return 2*((a["cases"]["recovered"] > b["cases"]["recovered"])^recovered)-1;
 	});
 	document.getElementById('recovered').textContent = 'RECOVERED' + (recovered ? '↓':'↑');
 	recovered = !recovered;
@@ -70,7 +70,7 @@ function sort_recovered() {
 
 function sort_total() {
 	obj.sort(function(a, b) {
-		return (a["cases"]["total"] > b["cases"]["total"])^total;
+		return 2*((a["cases"]["total"] > b["cases"]["total"])^total)-1;
 	});
 	document.getElementById('total').textContent = 'TOTAL' + (total ? '↓':'↑');
 	total = !total;
