@@ -8,6 +8,10 @@ var total = 1;
 
 function make_table() {
 	document.getElementById("tbd").innerHTML = "";
+	if(total == 1)
+	{
+		return ;
+	}
 	var cnt = 0;
 	for(var key in obj)
     {
@@ -28,7 +32,6 @@ function sort_country() {
 	})
 	document.getElementById('country').textContent = 'COUNTRY' + (country ? '↓':'↑');
 	country = !country;
-	document.getElementById("country");
 	make_table();
 }
 
