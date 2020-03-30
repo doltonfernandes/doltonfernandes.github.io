@@ -24,10 +24,26 @@ function make_table() {
 
 function sort_country() {
 	obj.sort(function(a, b) {
-		return (a["country"] > b["country"])^country;
+		if(country == 0)
+		{
+			return a["country"] > b["country"];
+		}
+		else
+		{
+			return a["country"] <= b["country"];
+		}
+		// return (a["country"] > b["country"])^country;
 	});
 	document.getElementById('country').textContent = 'COUNTRY' + (country ? '↓':'↑');
-	country = !country;
+	// country = !country;
+	if(country == 1)
+	{
+		country = 0
+	}
+	else
+	{
+		country = 1;
+	}
 	make_table();
 }
 
