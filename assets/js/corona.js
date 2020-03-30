@@ -7,7 +7,6 @@ var recovered = 0;
 var total = 1;
 
 function make_table() {
-	document.getElementById('lol').textContent += obj[0]['country'];
 	document.getElementById("tbd").innerHTML = "";
 	var cnt = 0;
 	for(var key in obj)
