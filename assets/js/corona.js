@@ -19,10 +19,10 @@ function make_data() {
 			for (var key in tmp) {
 			    obj.push(tmp[key]);
 			}
-    		document.getElementById('thr').innerHTML += '<th><h1>Sr No.</h1></th><th onclick="sort_country()"><h1 id="country">Country ↓</h1></th>';
+    		document.getElementById('thr').innerHTML += '<th><h1>Sr No.</h1></th><th onclick="sort_country()"><h1 id="country">Country↓</h1></th>';
 		    for(var key in obj[0]["cases"])
 		    {
-	    		document.getElementById('thr').innerHTML += '<th onclick="sort_' + key +  '()"><h1 id="' + key + '">' + key + ' ↓</h1></th>';
+	    		document.getElementById('thr').innerHTML += '<th onclick="sort_' + key +  '()"><h1 id="' + key + '">' + key + '↓</h1></th>';
 		    }
 		    sort_total();
 		    make_table();
@@ -56,7 +56,7 @@ function sort_country() {
 	obj.sort(function(a, b) {
 		return (a["country"] > b["country"])^country;
 	})
-	document.getElementById('country').textContent = 'country ' + (country ? '↓':'↑');
+	document.getElementById('country').textContent = 'country' + (country ? '↓':'↑');
 	country = !country;
 	document.getElementById("country");
 	make_table();
@@ -67,7 +67,7 @@ function sort_new() {
 	obj.sort(function(a, b) {
 		return (a["cases"]["new"] > b["cases"]["new"])^neww;
 	})
-	document.getElementById('new').textContent = 'new ' + (neww ? '↓':'↑');
+	document.getElementById('new').textContent = 'new' + (neww ? '↓':'↑');
 	neww = !neww;
 	make_table();
 }
@@ -76,7 +76,7 @@ function sort_active() {
 	obj.sort(function(a, b) {
 		return (a["cases"]["active"] > b["cases"]["active"])^active;
 	})
-	document.getElementById('active').textContent = 'active ' + (active ? '↓':'↑');
+	document.getElementById('active').textContent = 'active' + (active ? '↓':'↑');
 	active = !active;
 	make_table();
 }
@@ -85,7 +85,7 @@ function sort_critical() {
 	obj.sort(function(a, b) {
 		return (a["cases"]["critical"] > b["cases"]["critical"])^critical;
 	})
-	document.getElementById('critical').textContent = 'critical ' + (critical ? '↓':'↑');
+	document.getElementById('critical').textContent = 'critical' + (critical ? '↓':'↑');
 	critical = !critical;
 	make_table();
 }
@@ -94,7 +94,7 @@ function sort_recovered() {
 	obj.sort(function(a, b) {
 		return (a["cases"]["recovered"] > b["cases"]["recovered"])^recovered;
 	})
-	document.getElementById('recovered').textContent = 'recovered ' + (recovered ? '↓':'↑');
+	document.getElementById('recovered').textContent = 'recovered' + (recovered ? '↓':'↑');
 	recovered = !recovered;
 	make_table();
 }
@@ -103,7 +103,7 @@ function sort_total() {
 	obj.sort(function(a, b) {
 		return (a["cases"]["total"] > b["cases"]["total"])^total;
 	})
-	document.getElementById('total').textContent = 'total ' + (total ? '↓':'↑');
+	document.getElementById('total').textContent = 'total' + (total ? '↓':'↑');
 	total = !total;
 	make_table();
 }
