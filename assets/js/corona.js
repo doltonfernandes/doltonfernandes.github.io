@@ -7,7 +7,6 @@ var recovered = 0;
 var total = 1;
 
 function make_table() {
-	document.getElementById('lol').textContent += '2';
 
 	document.getElementById("tbd").innerHTML = "";
 	var cnt = 0;
@@ -25,8 +24,6 @@ function make_table() {
 }
 
 function sort_country() {
-	document.getElementById('lol').textContent += '1';
-
 	obj.sort(function(a, b) {
 		return (a["country"] > b["country"])^country;
 	})
