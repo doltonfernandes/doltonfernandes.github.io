@@ -96,6 +96,8 @@ function make_data() {
 	    		document.getElementById('thr').innerHTML += '<th onclick="sort_' + key +  '()"><h1 id="' + key + '">' + key.toUpperCase() + '↓</h1></th>';
 		    }
 		    sort_total();
+		    document.getElementById('loader').innerHTML = '';
+		    document.getElementById('button_cont').innerHTML = '<a class="example_a" onclick="india()" target="_blank" rel="nofollow noopener">India Stats</a>';
 		    make_table();
 		}
 	});
@@ -105,4 +107,86 @@ function make_data() {
 	xhr.setRequestHeader("x-rapidapi-key", "604a6ae58cmsh1d0fd5d11558425p1ef0f9jsn66c6876e2c56");
 
 	xhr.send(data);
+}
+
+function india() {
+    document.getElementById('button_cont').innerHTML = '';
+	document.getElementById("thr").innerHTML = "";
+	document.getElementById("tbd").innerHTML = "";
+	var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", "https://api.covid19india.org/state_district_wise.json", false );
+    xmlHttp.send( null );
+	var tmp = JSON.parse(xmlHttp.responseText);
+	obj = [];
+	for(var key in tmp)
+	{
+		if(key == "Unknown")
+		{
+			continue;
+		}
+		for(var key2 in tmp[key]["districtData"])
+		{
+			if(key2 == "Unknown")
+			{
+				continue;
+			}
+			obj.push({District:key2,State:key,Confirmed:tmp[key]["districtData"][key2]["confirmed"]});
+			console.log(key);
+			console.log(key2);
+			console.log(tmp[key]["districtData"][key2]);
+		}
+	}
+	document.getElementById('thr').innerHTML += '<th><h1>Sr No.</h1></th>';
+	document.getElementById('thr').innerHTML += '<th onclick="sort_District()"><h1 id="District">District↓</h1></th>';
+	document.getElementById('thr').innerHTML += '<th onclick="sort_State()"><h1 id="State">State↓</h1></th>';
+	document.getElementById('thr').innerHTML += '<th onclick="sort_Confirmed()"><h1 id="Confirmed">Confirmed↓</h1></th>';
+	sort_Confirmed();
+	make_table2();
+}
+
+function make_table2() {
+	document.getElementById("tbd").innerHTML = "";
+	var cnt = 0;
+	for(var key in obj)
+    {
+    	cnt ++ ;
+    	var tmp_str = '<tr><td>' + cnt +'</td>';
+    	for(var key2 in obj[key])
+    	{
+	    	tmp_str += '<td>' + (obj[key][key2]==null? 0:obj[key][key2]) + '</td>';
+    	}
+    	tmp_str += '</tr>';
+    	document.getElementById('tbd').innerHTML += tmp_str;
+    }
+}
+
+var State = 0;
+var District = 0;
+var Confirmed = 1;
+
+function sort_State() {
+	obj.sort(function(a, b) {
+		return 2*((a["State"] > b["State"])^State)-1;
+	});
+	document.getElementById('State').textContent = 'State' + (State ? '↓':'↑');
+	State = !State;
+	make_table2();
+}
+
+function sort_District() {
+	obj.sort(function(a, b) {
+		return 2*((a["District"] > b["District"])^District)-1;
+	});
+	document.getElementById('District').textContent = 'District' + (District ? '↓':'↑');
+	District = !District;
+	make_table2();
+}
+
+function sort_Confirmed() {
+	obj.sort(function(a, b) {
+		return 2*((a["Confirmed"] > b["Confirmed"])^Confirmed)-1;
+	});
+	document.getElementById('Confirmed').textContent = 'Confirmed' + (Confirmed ? '↓':'↑');
+	Confirmed = !Confirmed;
+	make_table2();
 }
