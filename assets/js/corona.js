@@ -110,7 +110,7 @@ function make_data() {
 }
 
 function india() {
-    document.getElementById('button_cont').innerHTML = '';
+		document.getElementById('button_cont').innerHTML = '<a class="example_a" onclick="state()" target="_blank" rel="nofollow noopener">Statewise Stats</a>';
 	document.getElementById("thr").innerHTML = "";
 	document.getElementById("tbd").innerHTML = "";
     document.getElementById('loader').innerHTML = '<div class="loader"></div>';
@@ -148,6 +148,35 @@ function india() {
 	make_table2();
 }
 
+function state() {
+    document.getElementById('button_cont').innerHTML = '';
+	document.getElementById("thr").innerHTML = "";
+	document.getElementById("tbd").innerHTML = "";
+    document.getElementById('loader').innerHTML = '<div class="loader"></div>';
+	var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", "https://api.covid19india.org/state_district_wise.json", false );
+    xmlHttp.send( null );
+	var tmp = JSON.parse(xmlHttp.responseText);
+	obj = [];
+	for(var key in tmp)
+	{
+		state_confirmed=0
+		for(var key2 in tmp[key]["districtData"])
+		{
+			console.log(key,state_confirmed,Number(tmp[key]["districtData"][key2]["confirmed"]))
+			state_confirmed=state_confirmed+Number(tmp[key]["districtData"][key2]["confirmed"])
+		}
+		obj.push({State:key,Confirmed:state_confirmed});
+	}
+	document.getElementById('thr').innerHTML += '<th><h1>Sr No.</h1></th>';
+	document.getElementById('thr').innerHTML += '<th onclick="sort_State()"><h1 id="State">State↓</h1></th>';
+	document.getElementById('thr').innerHTML += '<th onclick="sort_Confirmed()"><h1 id="Confirmed">Confirmed↓</h1></th>';
+	sort_Confirmed();
+    document.getElementById('loader').innerHTML = '';
+	make_table2();
+}
+
+
 function make_table2() {
 	document.getElementById("tbd").innerHTML = "";
 	var cnt = 0;
@@ -163,6 +192,8 @@ function make_table2() {
     	document.getElementById('tbd').innerHTML += tmp_str;
     }
 }
+
+
 
 var State = 0;
 var District = 0;
