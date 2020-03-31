@@ -110,7 +110,7 @@ function make_data() {
 }
 
 function india() {
-		document.getElementById('button_cont').innerHTML = '<a class="example_a" onclick="state()" target="_blank" rel="nofollow noopener">Statewise Stats</a>';
+	document.getElementById('button_cont').innerHTML = '<a class="example_a" onclick="state()" target="_blank" rel="nofollow noopener">Statewise Stats</a>';
 	document.getElementById("thr").innerHTML = "";
 	document.getElementById("tbd").innerHTML = "";
     document.getElementById('loader').innerHTML = '<div class="loader"></div>';
@@ -148,6 +148,10 @@ function india() {
 	make_table2();
 }
 
+var State = 0;
+var District = 0;
+var Confirmed = 1;
+
 function state() {
     document.getElementById('button_cont').innerHTML = '';
 	document.getElementById("thr").innerHTML = "";
@@ -171,6 +175,7 @@ function state() {
 	document.getElementById('thr').innerHTML += '<th><h1>Sr No.</h1></th>';
 	document.getElementById('thr').innerHTML += '<th onclick="sort_State()"><h1 id="State">State↓</h1></th>';
 	document.getElementById('thr').innerHTML += '<th onclick="sort_Confirmed()"><h1 id="Confirmed">Confirmed↓</h1></th>';
+	Confirmed = 1;
 	sort_Confirmed();
     document.getElementById('loader').innerHTML = '';
 	make_table2();
@@ -192,12 +197,6 @@ function make_table2() {
     	document.getElementById('tbd').innerHTML += tmp_str;
     }
 }
-
-
-
-var State = 0;
-var District = 0;
-var Confirmed = 1;
 
 function sort_State() {
 	obj.sort(function(a, b) {
