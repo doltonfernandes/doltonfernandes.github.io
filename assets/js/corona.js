@@ -127,14 +127,16 @@ function india() {
 		}
 		for(var key2 in tmp[key]["districtData"])
 		{
+			if(key2 == "Unknown" && key =="Goa")
+			{
+				obj.push({District:"South Goa",State:key,Confirmed:tmp[key]["districtData"][key2]["confirmed"]});
+				continue;
+			}
 			if(key2 == "Unknown")
 			{
 				continue;
 			}
 			obj.push({District:key2,State:key,Confirmed:tmp[key]["districtData"][key2]["confirmed"]});
-			console.log(key);
-			console.log(key2);
-			console.log(tmp[key]["districtData"][key2]);
 		}
 	}
 	document.getElementById('thr').innerHTML += '<th><h1>Sr No.</h1></th>';
