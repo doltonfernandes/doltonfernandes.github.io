@@ -113,6 +113,7 @@ function india() {
     document.getElementById('button_cont').innerHTML = '';
 	document.getElementById("thr").innerHTML = "";
 	document.getElementById("tbd").innerHTML = "";
+    document.getElementById('loader').innerHTML = '<div class="loader"></div>';
 	var xmlHttp = new XMLHttpRequest();
     xmlHttp.open( "GET", "https://api.covid19india.org/state_district_wise.json", false );
     xmlHttp.send( null );
@@ -141,6 +142,7 @@ function india() {
 	document.getElementById('thr').innerHTML += '<th onclick="sort_State()"><h1 id="State">State↓</h1></th>';
 	document.getElementById('thr').innerHTML += '<th onclick="sort_Confirmed()"><h1 id="Confirmed">Confirmed↓</h1></th>';
 	sort_Confirmed();
+    document.getElementById('loader').innerHTML = '';
 	make_table2();
 }
 
