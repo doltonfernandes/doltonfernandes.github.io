@@ -105,8 +105,8 @@ h2 a {
 }
 
 @media (max-width: 800px) {
-.container td:nth-child(4),
-.container th:nth-child(4) { display: none; }
+.container td:nth-child(5),
+.container th:nth-child(5) { display: none; }
 }
 
   #header {
