@@ -1,6 +1,7 @@
 var obj = [];
 var country = 0;
 var neww = 0;
+var deaths = 0;
 var active = 0;
 var critical = 0;
 var recovered = 0;
@@ -12,7 +13,7 @@ function make_table() {
 	for(var key in obj)
     {
     	cnt ++ ;
-    	var tmp_str = '<tr><td>' + cnt +'</td><td>' + obj[key]['country'] + '</td>';
+    	var tmp_str = '<tr><td>' + cnt +'</td><td>' + obj[key]['country'] + '</td><td>' + obj[key]['deaths']['total'] + '</td>';
     	for(var key2 in obj[key]['cases'])
     	{
 	    	tmp_str += '<td>' + (obj[key]['cases'][key2]==null? 0:obj[key]['cases'][key2]) + '</td>';
@@ -31,6 +32,14 @@ function sort_country() {
 	make_table();
 }
 
+function sort_deaths() {
+	obj.sort(function(a, b) {
+		return 2*((parseInt(a["deaths"]["total"], 10) > parseInt(b["deaths"]["total"], 10))^deaths)-1;
+	});
+	document.getElementById('deaths').textContent = 'DEATHS' + (deaths ? '↓':'↑');
+	deaths = !deaths;
+	make_table();
+}
 
 function sort_new() {
 	obj.sort(function(a, b) {
@@ -87,6 +96,8 @@ function make_data() {
 	xhr.addEventListener("readystatechange", function () {
 		if (this.readyState === this.DONE) {
 		    var tmp = JSON.parse(this.responseText)["response"];
+		    console.log(tmp);
+
 			for (var key in tmp) {
 				if(tmp[key]["cases"]["new"] == null)
 				{
@@ -94,7 +105,7 @@ function make_data() {
 				}
 			    obj.push(tmp[key]);
 			}
-    		document.getElementById('thr').innerHTML += '<th><h1>Sr No.</h1></th><th onclick="sort_country()"><h1 id="country">COUNTRY↓</h1></th>';
+    		document.getElementById('thr').innerHTML += '<th><h1>Sr No.</h1></th><th onclick="sort_country()"><h1 id="country">COUNTRY↓</h1></th><th onclick="sort_deaths()"><h1 id="deaths">DEATHS↓</h1></th>';
 		    for(var key in obj[0]["cases"])
 		    {
 	    		document.getElementById('thr').innerHTML += '<th onclick="sort_' + key +  '()"><h1 id="' + key + '">' + key.toUpperCase() + '↓</h1></th>';
@@ -172,7 +183,6 @@ function state() {
 		state_confirmed=0
 		for(var key2 in tmp[key]["districtData"])
 		{
-			console.log(key,state_confirmed,Number(tmp[key]["districtData"][key2]["confirmed"]))
 			state_confirmed=state_confirmed+Number(tmp[key]["districtData"][key2]["confirmed"])
 		}
 		obj.push({State:key,Confirmed:state_confirmed});
