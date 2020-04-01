@@ -34,7 +34,7 @@ function sort_country() {
 
 function sort_new() {
 	obj.sort(function(a, b) {
-		return 2*((a["cases"]["new"] > b["cases"]["new"])^neww)-1;
+		return 2*((parseInt(a["cases"]["new"], 10) > parseInt(b["cases"]["new"], 10))^neww)-1;
 	});
 	document.getElementById('new').textContent = 'NEW' + (neww ? '↓':'↑');
 	neww = !neww;
@@ -88,6 +88,10 @@ function make_data() {
 		if (this.readyState === this.DONE) {
 		    var tmp = JSON.parse(this.responseText)["response"];
 			for (var key in tmp) {
+				if(tmp[key]["cases"]["new"] == null)
+				{
+					tmp[key]["cases"]["new"] = "+0";
+				}
 			    obj.push(tmp[key]);
 			}
     		document.getElementById('thr').innerHTML += '<th><h1>Sr No.</h1></th><th onclick="sort_country()"><h1 id="country">COUNTRY↓</h1></th>';
