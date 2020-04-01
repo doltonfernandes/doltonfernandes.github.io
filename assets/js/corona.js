@@ -110,9 +110,9 @@ function make_data() {
 }
 
 function india() {
-	document.getElementById('button_cont').innerHTML = '<a class="example_a" onclick="state()" target="_blank" rel="nofollow noopener">Statewise Stats</a>';
 	document.getElementById("thr").innerHTML = "";
 	document.getElementById("tbd").innerHTML = "";
+	document.getElementById('button_cont').innerHTML = '';
     document.getElementById('loader').innerHTML = '<div class="loader"></div>';
 	var xmlHttp = new XMLHttpRequest();
     xmlHttp.open( "GET", "https://api.covid19india.org/state_district_wise.json", false );
@@ -145,6 +145,7 @@ function india() {
 	document.getElementById('thr').innerHTML += '<th onclick="sort_Confirmed()"><h1 id="Confirmed">Confirmed↓</h1></th>';
 	sort_Confirmed();
     document.getElementById('loader').innerHTML = '';
+	document.getElementById('button_cont').innerHTML = '<a class="example_a" onclick="state()" target="_blank" rel="nofollow noopener">Statewise Stats</a>';
 	make_table2();
 }
 
