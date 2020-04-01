@@ -96,8 +96,6 @@ function make_data() {
 	xhr.addEventListener("readystatechange", function () {
 		if (this.readyState === this.DONE) {
 		    var tmp = JSON.parse(this.responseText)["response"];
-		    console.log(tmp);
-
 			for (var key in tmp) {
 				if(tmp[key]["cases"]["new"] == null)
 				{
@@ -155,9 +153,9 @@ function india() {
 		}
 	}
 	document.getElementById('thr').innerHTML += '<th><h1>Sr No.</h1></th>';
-	document.getElementById('thr').innerHTML += '<th onclick="sort_District()"><h1 id="District">District↓</h1></th>';
-	document.getElementById('thr').innerHTML += '<th onclick="sort_State()"><h1 id="State">State↓</h1></th>';
-	document.getElementById('thr').innerHTML += '<th onclick="sort_Confirmed()"><h1 id="Confirmed">Confirmed↓</h1></th>';
+	document.getElementById('thr').innerHTML += '<th onclick="sort_District()"><h1 id="District">DISTRICT↓</h1></th>';
+	document.getElementById('thr').innerHTML += '<th onclick="sort_State()"><h1 id="State">STATE↓</h1></th>';
+	document.getElementById('thr').innerHTML += '<th onclick="sort_Confirmed()"><h1 id="Confirmed">CONFIRMED↓</h1></th>';
 	sort_Confirmed();
     document.getElementById('loader').innerHTML = '';
 	document.getElementById('button_cont').innerHTML = '<a class="example_a" onclick="state()" target="_blank" rel="nofollow noopener">Statewise Stats</a>';
@@ -174,26 +172,33 @@ function state() {
 	document.getElementById("tbd").innerHTML = "";
     document.getElementById('loader').innerHTML = '<div class="loader"></div>';
 	var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", "https://api.covid19india.org/state_district_wise.json", false );
+    xmlHttp.open( "GET", "https://api.covid19india.org/data.json", false );
     xmlHttp.send( null );
-	var tmp = JSON.parse(xmlHttp.responseText);
+	var tmp = JSON.parse(xmlHttp.responseText)["statewise"];
 	obj = [];
 	for(var key in tmp)
 	{
-		state_confirmed=0
-		for(var key2 in tmp[key]["districtData"])
-		{
-			state_confirmed=state_confirmed+Number(tmp[key]["districtData"][key2]["confirmed"])
-		}
-		obj.push({State:key,Confirmed:state_confirmed});
+		var lol = tmp[key];
+		delete lol["delta"];
+		delete lol["lastupdatedtime"];
+		var statelol = lol["state"];
+		delete lol["state"];
+		var lol = {lol,"state":statelol};
+		obj.push(lol);
 	}
-	document.getElementById('thr').innerHTML += '<th><h1>Sr No.</h1></th>';
-	document.getElementById('thr').innerHTML += '<th onclick="sort_State()"><h1 id="State">State↓</h1></th>';
-	document.getElementById('thr').innerHTML += '<th onclick="sort_Confirmed()"><h1 id="Confirmed">Confirmed↓</h1></th>';
-	Confirmed = 1;
-	sort_Confirmed();
     document.getElementById('loader').innerHTML = '';
-	make_table2();
+	document.getElementById('thr').innerHTML += '<th><h1>Sr No.</h1></th>';
+	document.getElementById('thr').innerHTML += '<th onclick="sort_State1()"><h1 id="State">STATE↓</h1></th>';
+	for(var key in obj[0]["lol"])
+	{
+		document.getElementById('thr').innerHTML += '<th onclick="sort_' + key + '1()"><h1 id="' + key + '">' + key.toUpperCase() + '↓</h1></th>';
+	}
+	State = 0
+	active = 0
+	Confirmed = 0
+	deaths = 0
+	recovered = 0
+	make_table3();
 }
 
 
@@ -213,11 +218,27 @@ function make_table2() {
     }
 }
 
+function make_table3() {
+	document.getElementById("tbd").innerHTML = "";
+	var cnt = 0;
+	for(var key in obj)
+    {
+    	cnt ++ ;
+    	var tmp_str = '<tr><td>' + cnt +'</td><td>' + obj[key]["state"] + '</td>';
+    	for(var key2 in obj[key]["lol"])
+    	{
+	    	tmp_str += '<td>' + (obj[key]["lol"][key2]==null? 0:obj[key]["lol"][key2]) + '</td>';
+    	}
+    	tmp_str += '</tr>';
+    	document.getElementById('tbd').innerHTML += tmp_str;
+    }
+}
+
 function sort_State() {
 	obj.sort(function(a, b) {
 		return 2*((a["State"] > b["State"])^State)-1;
 	});
-	document.getElementById('State').textContent = 'State' + (State ? '↓':'↑');
+	document.getElementById('State').textContent = 'STATE' + (State ? '↓':'↑');
 	State = !State;
 	make_table2();
 }
@@ -226,7 +247,7 @@ function sort_District() {
 	obj.sort(function(a, b) {
 		return 2*((a["District"] > b["District"])^District)-1;
 	});
-	document.getElementById('District').textContent = 'District' + (District ? '↓':'↑');
+	document.getElementById('District').textContent = 'DISTRICT' + (District ? '↓':'↑');
 	District = !District;
 	make_table2();
 }
@@ -235,7 +256,52 @@ function sort_Confirmed() {
 	obj.sort(function(a, b) {
 		return 2*((a["Confirmed"] > b["Confirmed"])^Confirmed)-1;
 	});
-	document.getElementById('Confirmed').textContent = 'Confirmed' + (Confirmed ? '↓':'↑');
+	document.getElementById('Confirmed').textContent = 'CONFIRMED' + (Confirmed ? '↓':'↑');
 	Confirmed = !Confirmed;
 	make_table2();
+}
+
+function sort_State1() {
+	obj.sort(function(a, b) {
+		return 2*((a["state"] > b["state"])^State)-1;
+	});
+	document.getElementById('State').textContent = 'STATE' + (State ? '↓':'↑');
+	State = !State;
+	make_table3();
+}
+
+function sort_deaths1() {
+	obj.sort(function(a, b) {
+		return 2*((parseInt(a["lol"]["deaths"],10) > parseInt(b["lol"]["deaths"],10))^deaths)-1;
+	});
+	document.getElementById('deaths').textContent = 'DEATHS' + (deaths ? '↓':'↑');
+	deaths = !deaths;
+	make_table3();
+}
+
+function sort_active1() {
+	obj.sort(function(a, b) {
+		return 2*((parseInt(a["lol"]["active"],10) > parseInt(b["lol"]["active"],10))^active)-1;
+	});
+	document.getElementById('active').textContent = 'ACTIVE' + (active ? '↓':'↑');
+	active = !active;
+	make_table3();
+}
+
+function sort_recovered1() {
+	obj.sort(function(a, b) {
+		return 2*((parseInt(a["lol"]["recovered"],10) > parseInt(b["lol"]["recovered"],10))^recovered)-1;
+	});
+	document.getElementById('recovered').textContent = 'RECOVERED' + (recovered ? '↓':'↑');
+	recovered = !recovered;
+	make_table3();
+}
+
+function sort_confirmed1() {
+	obj.sort(function(a, b) {
+		return 2*((parseInt(a["lol"]["confirmed"],10) > parseInt(b["lol"]["confirmed"],10))^Confirmed)-1;
+	});
+	document.getElementById('confirmed').textContent = 'CONFIRMED' + (Confirmed ? '↓':'↑');
+	Confirmed = !Confirmed;
+	make_table3();
 }
