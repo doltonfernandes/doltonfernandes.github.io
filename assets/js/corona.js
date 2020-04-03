@@ -181,6 +181,10 @@ function state() {
 		var lol = tmp[key];
 		delete lol["delta"];
 		delete lol["lastupdatedtime"];
+		delete lol["deltaconfirmed"];
+		delete lol["deltadeaths"];
+		delete lol["deltarecovered"];
+		delete lol["statecode"];
 		var statelol = lol["state"];
 		delete lol["state"];
 		var lol = {lol,"state":statelol};
