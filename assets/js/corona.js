@@ -185,6 +185,7 @@ function state() {
 		delete lol["deltadeaths"];
 		delete lol["deltarecovered"];
 		delete lol["statecode"];
+		delete lol["statenotes"];
 		var statelol = lol["state"];
 		delete lol["state"];
 		var lol = {lol,"state":statelol};
