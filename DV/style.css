@@ -1,0 +1,239 @@
+*{
+	margin : 0;
+	padding : 0;
+}
+
+h1
+{
+	font-size:40px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	background: #fff;
+	overflow-x: hidden;
+}
+
+
+#sections {
+	position: relative;
+	display: inline-block;
+	width: 400px;
+	top: 60px;
+	z-index: 90;
+	margin-right: 50px;
+}
+
+.categoryLegend {
+	font-family: Impact, Charcoal, sans-serif;
+}
+
+.categoryLegend2 {
+	font-family: Impact, Charcoal, sans-serif;
+}
+
+.step {
+	margin-bottom: 100px;
+	height: 700px;
+	font-family: Impact, Charcoal, sans-serif;
+}
+
+#graphic {
+	margin: auto;
+	width: 1500px;
+	flex-direction: row;
+	align-items: top;
+	justify-content: space-around;
+}
+
+#vis {
+	display: inline-block;
+	position: fixed;
+	top: 0px;
+	z-index: 1;
+	margin-left: 0;
+	height: 1000px;
+	width: 1000px;
+}
+
+
+
+#tooltip {
+	font-family: "Arial, Helvetica, sans-serif";
+	position: absolute;
+	display: none;
+	background: rgba(0, 0, 0, 0.8);
+	color: white;
+	padding: 7px;
+	padding-right: 10px;
+	padding-left: 10px;
+	font-size: 1.2em;
+	z-index: 100;
+	border-radius: 5px;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+.box-minmax{
+	margin-top: 30px;
+	width: 608px;
+	display: flex;
+	justify-content: space-between;
+	font-size: 20px;
+	color: #FFFFFF;
+	span:first-child {
+		margin-left: 10px;
+	}
+}
+
+
+#rs-bullet {
+	font-size:50px;
+}
+
+.slider {
+	-webkit-appearance: none;
+	width: 100%;
+	height: 15px;
+	background: #d3d3d3;
+	border-radius: 5px;
+	outline: none;
+	opacity: 0.7;
+	-webkit-transition: .2s;
+	transition: opacity .2s;
+	margin:10px;
+}
+
+.slider:hover {
+	opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	background: #1c1c1c;
+	cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	background: #1c1c1c;
+	cursor: pointer;
+}
+
+#nodata {
+  font-family: 'Open Sans', sans-serif;
+  color: #555;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 150px;
+  font-weight: 800;
+  letter-spacing: -3px;
+  line-height: 1;
+  text-shadow: #EDEDED 3px 2px 0;
+  position: absolute;
+  left: 700px;
+  top: 300px;
+  visibility: hidden;
+}
+
+.btn {
+  border: none;
+  text-align: center;
+  cursor: pointer;
+  text-transform: uppercase;
+  outline: none;
+  overflow: hidden;
+  position: relative;
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+  background-color: #222;
+  padding: 14px 40px;
+  margin: 0 auto;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.20);
+  left: 40px;
+}
+
+.btn span {
+  position: relative; 
+  z-index: 1;
+}
+
+.btn:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 490%;
+  width: 140%;
+  background: #78c7d2;
+  -webkit-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
+  -webkit-transform: translateX(-98%) translateY(-25%) rotate(45deg);
+  transform: translateX(-98%) translateY(-25%) rotate(45deg);
+}
+
+.btn:hover:after {
+  -webkit-transform: translateX(-9%) translateY(-25%) rotate(45deg);
+  transform: translateX(-9%) translateY(-25%) rotate(45deg);
+}
+
+.button1 {
+	padding:10px;
+}
+
+.button_container {
+	margin:10px;
+}
+
+input[type="checkbox"] {
+  margin:10px;
+  position:relative;
+  width:60px;
+  height:10px;
+  -webkit-appearance: none;
+  background: linear-gradient(0deg, #333, #000);
+  outline: none;
+  border-radius: 10px;
+  box-shadow: 0 0 0 4px #353535, 0 0 0 5px #3e3e3e, inset 0 0 10px rgba(0,0,0,1);
+}
+
+input:checked[type="checkbox"]:nth-of-type(1) {
+  background: linear-gradient(0deg, #13ad35, #63db7d);
+  box-shadow: 0 0 0 4px #353535, 0 0 0 5px #3e3e3e, inset 0 0 10px rgba(0,0,0,1);
+}
+
+input:checked[type="checkbox"]:nth-of-type(2) {
+  background: linear-gradient(0deg, #70a1ff, #1e90ff);
+  box-shadow: 0 0 0 4px #353535, 0 0 0 5px #3e3e3e, inset 0 0 10px rgba(0,0,0,1);
+}
+
+input[type="checkbox"]:before {
+  content:'';
+  position:absolute;
+  top:0;
+  left:0;
+  width:20px;
+  height:10px;
+  background: linear-gradient(0deg, #000, #6b6b6b);
+  border-radius: 10px;
+  box-shadow: 0 0 0 1px #232323;
+  transform: scale(.98,.96);
+  transition:.5s;
+}
+
+input:checked[type="checkbox"]:before {
+  left:40px;
+}

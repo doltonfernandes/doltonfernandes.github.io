@@ -1,0 +1,52 @@
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="style.css">
+		<script src = 'd3.js'></script>
+		<script src = 'https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js'></script>
+		<title>DV Project</title>
+	</head>
+
+	<div class="nodata">
+		<a id="nodata">No Data</a>
+	</div>
+
+
+	<body>
+		<div id="tooltip"></div>
+		<div id="graphic">
+			<div id="sections">
+				<section class="step">
+					<h1>
+						<span id="tit"></span>
+						Year: <span id="rs-bullet" class="rs-label">2000</span></h1>
+					<div class="container">
+							<input id="rs-range-line" class="rs-range slider" type="range" value="2000" min="1980" max="2020"><br><br>
+					</div>
+					<div class="button_container">
+						<button class="btn" id="automation"><span id="automationText">Start Automation</span></button>
+					</div>
+					<div class="button1 switch">
+						<strong>Labels</strong>:
+						<input type="checkbox" name="" class="" id="button1" value='false' onchange="if(this.value == 'false') this.value = 'true';else this.value ='false';labelToggle(this.value);">
+
+					</div>
+					<div class="button1">
+						<strong>Genre</strong>
+						<input type="checkbox" name="" id="button2" value='true' onchange="if(this.value == 'false') this.value = 'true';else this.value ='false';refreshPage()">
+						<strong>Platform</strong>
+					</div>
+					<br><br>RADIUS  = Total Worldwide Sales
+					<svg id = 'legend' width = '400px' height = '360px'></svg>
+				</section>
+			</div>
+			<div id="vis">
+
+			</div>
+		</div>
+
+		<script src = 'mainCode.js'></script>
+
+	</body>
+</html>
