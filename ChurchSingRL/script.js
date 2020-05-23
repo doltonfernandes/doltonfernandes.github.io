@@ -20,7 +20,7 @@ function make_data() {
 	var cnt = 0;
 	for(var i of arr) {
 		cnt ++ ;
-		strr += '<tr><td data-label="thumbnail"><img src="' + i.thumbnail + '" class="image1" /></td><td data-label="rank">' + cnt + '</td><td data-label="name">' + i.title + '</td><td data-label="views">' + i.views + '</td></tr>';
+		strr += '<tr><td data-label="thumbnail"><img src="' + i.thumbnail + '" class="image1" /></td><td data-label="rank">' + cnt + '</td><td data-label="name">' + i.title + '</td><td data-label="views">' + i.views + '</td><td data-label="link"><a href="' + i.link + '">Click Here</a></td></tr>';
 	}
     document.getElementById('tableheader').style.visibility = 'visible';
     document.getElementById('tbd').innerHTML += strr;
