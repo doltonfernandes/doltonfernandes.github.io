@@ -12,7 +12,7 @@ function make_data() {
 	for(var i of arr) if(i.views[i.views.length - 1] == 'K') {
 		i.views = i.views.replace('K','');
 		i.views *= 1000;
-	}
+	} else i.views = parseInt(i.views, 10);
 	arr.sort(function(a, b) {
 		return 2*(a.views < b.views)-1;
 	});
